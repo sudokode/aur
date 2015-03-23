@@ -1,7 +1,7 @@
 # Maintainer: sudokode <sudokode@gmail.com>
 
 pkgname=m4b-converter-git
-pkgver=27.6060ccc
+pkgver=0.5.r27.6060ccc
 pkgrel=1
 pkgdesc="Convert m4b audio books to a group of mp3 files by chapter"
 arch=('any')
@@ -15,7 +15,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd $pkgname
 
-  echo "$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+  echo "$(git describe --tags | sed 's/^v//').r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
 prepare() {
@@ -34,8 +34,6 @@ package() {
 
   mkdir -p "$pkgdir"/usr/bin
   ln -s /usr/lib/python2.7/site-packages/m4b.py "$pkgdir"/usr/bin/m4b-converter
-
-  find "$pkgdir" -type d -name '.git' -exec rm -r '{}' +
 }
 
 # vim:set ts=2 sw=2 et:

@@ -1,2 +1,0 @@
-# aur
-AUR packages
